@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stone Paper Scissors Game</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+    button { padding: 10px 20px; margin: 10px; font-size: 16px; }
+    #result { margin-top: 20px; font-size: 18px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Stone Paper Scissors</h1>
+  <p>Choose your move:</p>
+  <button onclick="play('Stone')">Stone</button>
+  <button onclick="play('Paper')">Paper</button>
+  <button onclick="play('Scissors')">Scissors</button>
+  
+  <div id="result"></div>
+
+  <script>
+    function play(userChoice) {
+      const choices = ['Stone', 'Paper', 'Scissors'];
+      const computerChoice = choices[Math.floor(Math.random() * 3)];
+
+      let result = '';
+      if (userChoice === computerChoice) {
+        result = `Tie! Both chose ${userChoice}`;
+      } else if (
+        (userChoice === 'Stone' && computerChoice === 'Scissors') ||
+        (userChoice === 'Paper' && computerChoice === 'Stone') ||
+        (userChoice === 'Scissors' && computerChoice === 'Paper')
+      ) {
+        result = `You Win! ${userChoice} beats ${computerChoice}`;
+      } else {
+        result = `You Lose! ${computerChoice} beats ${userChoice}`;
+      }
+
+      document.getElementById('result').innerText = result;
+    }
+  </script>
+</body>
+</html>
